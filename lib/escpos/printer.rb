@@ -25,6 +25,14 @@ module Escpos
       @data << Escpos.sequence(PAPER_FULL_CUT)
     end
 
+    def kick_drawerV1!
+      @data << Escpos.sequence(CD_KICK_2)
+    end
+
+    def kick_drawerV2!
+      @data << Escpos.sequence(CD_KICK_5)
+    end
+
     def save(path)
       File.open(path, "wb") do |f|
         f.print to_escpos
