@@ -7,12 +7,10 @@ module Escpos
 
     attr_reader :options
 
-    def initialize(file_or_path, options = {})
+    def initialize(file_or_template, options = {}, trim_mode: nil)
       @options = options
-      if file_or_path.is_a?(String)
-        @template = ERB.new(File.open(file_or_path).read)
-      elsif file_or_path.is_a?(File)
-        @template = ERB.new(file_or_path.read)
+      if file_or_template.is_a?(String) || file_or_template.is_a?(File)
+        @template = ERB.new(file_or_template, trim_mode: trim_mode)
       else
         raise ArgumentError.new("Must pass instance of file or path as argument.")
       end

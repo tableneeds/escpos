@@ -98,7 +98,7 @@ end
 ```
 
 ```ruby
-report = MyReport.new 'path/to/my_report.erb', {
+report = MyReport.new File.open('path/to/my_report.erb'), {
   order: { number: 123 }
 }
 @printer << report.render
